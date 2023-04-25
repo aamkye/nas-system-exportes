@@ -24,7 +24,6 @@ install:
 	sudo mkdir -p /bin/exporter/
 	sudo chmod 777 /bin/exporter/
 	cp ./tmp/* /bin/exporter/
-	sudo ln -sf $(CURDIR)/configs/smartctl_exporter.yml /etc/smartctl_exporter.yml
 	sudo ln -sf $(CURDIR)/systemd/zfs_exporter.service /etc/systemd/system/zfs_exporter.service
 	sudo ln -sf $(CURDIR)/systemd/node_exporter.service /etc/systemd/system/node_exporter.service
 	sudo ln -sf $(CURDIR)/systemd/smartctl_exporter.service /etc/systemd/system/smartctl_exporter.service

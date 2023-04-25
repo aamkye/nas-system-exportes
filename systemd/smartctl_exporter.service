@@ -3,7 +3,7 @@ Description=SMARTCTL Exporter
 
 [Service]
 User=root
-ExecStart=/bin/exporter/smartctl_exporter --config=/etc/smartctl_exporter.yml
+ExecStart=/bin/exporter/smartctl_exporter
 Restart=always
 RestartSec=5
 
