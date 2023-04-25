@@ -8,4 +8,5 @@ wget https://github.com/prometheus/node_exporter/releases/download/${LATEST}/nod
 tar -xf node_exporter-${LATEST_W_V}.linux-amd64.tar.gz && \
 cp node_exporter-${LATEST_W_V}.linux-amd64/node_exporter . && \
 rm -rf node_exporter-${LATEST_W_V}.linux-amd64* && \
+chmod +x ./node_exporter && \
 popd

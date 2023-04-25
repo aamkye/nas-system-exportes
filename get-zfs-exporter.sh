@@ -8,4 +8,5 @@ wget https://github.com/pdf/zfs_exporter/releases/download/${LATEST}/zfs_exporte
 tar -xf zfs_exporter-${LATEST_W_V}.linux-amd64.tar.gz && \
 cp zfs_exporter-${LATEST_W_V}.linux-amd64/zfs_exporter . && \
 rm -rf zfs_exporter-${LATEST_W_V}.linux-amd64* && \
+chmod +x ./zfs_exporter && \
 popd
