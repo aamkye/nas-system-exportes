@@ -9,4 +9,4 @@
 
 * zfs: 9134
 * node: 9100
-* smart: 9633
+* smartctl: 9633

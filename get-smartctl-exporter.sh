@@ -8,5 +8,5 @@ wget https://github.com/prometheus-community/smartctl_exporter/releases/download
 tar -xf smartctl_exporter-${LATEST_W_V}.linux-amd64.tar.gz && \
 cp smartctl_exporter-${LATEST_W_V}.linux-amd64/smartctl_exporter . && \
 rm -rf smartctl_exporter-${LATEST_W_V}.linux-amd64* && \
-chmod +x ./smart_exporter && \
+chmod +x ./smartctl_exporter && \
 popd
