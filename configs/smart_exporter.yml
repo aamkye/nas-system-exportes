@@ -4,9 +4,3 @@ smartctl_exporter:
   fake_json: no
   smartctl_location: /usr/sbin/smartctl
   collect_not_more_than_period: 0s
-  devices:
-  - /dev/sda
-  - /dev/sdb
-  - /dev/sdc
-  - /dev/sdd
-  - /dev/sde
