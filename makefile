@@ -1,10 +1,10 @@
 SHELL=/usr/bin/env bash -ex
 
-all: get install run
+all: get install enable run
 
 get: prepare get-zfs-exporter get-smartctl-exporter get-node-exporter
 
-clean: stop clean-tmp uninstall
+clean: stop uninstall clean-tmp
 
 restart: stop run
 
@@ -21,30 +21,37 @@ get-node-exporter:
 	./get-node-exporter.sh
 
 install:
-	sudo mkdir -p /bin/exporter/
-	sudo chmod 777 /bin/exporter/
+	mkdir -p /bin/exporter/
+	chmod 777 /bin/exporter/
 	cp ./tmp/* /bin/exporter/
-	sudo ln -sf $(CURDIR)/systemd/zfs_exporter.service /etc/systemd/system/zfs_exporter.service
-	sudo ln -sf $(CURDIR)/systemd/node_exporter.service /etc/systemd/system/node_exporter.service
-	sudo ln -sf $(CURDIR)/systemd/smartctl_exporter.service /etc/systemd/system/smartctl_exporter.service
+	ln -sf $(CURDIR)/systemd/zfs_exporter.service /etc/systemd/system/zfs_exporter.service
+	ln -sf $(CURDIR)/systemd/node_exporter.service /etc/systemd/system/node_exporter.service
+	ln -sf $(CURDIR)/systemd/smartctl_exporter.service /etc/systemd/system/smartctl_exporter.service
+	
+enable:
+	systemctl daemon-reload
+	systemctl enable zfs_exporter
+	systemctl enable node_exporter
+	systemctl enable smartctl_exporter
 
 run:
-	sudo systemctl daemon-reload
-	sudo systemctl start zfs_exporter
-	sudo systemctl start node_exporter
-	sudo systemctl start smartctl_exporter
+	systemctl daemon-reload
+	systemctl start zfs_exporter
+	systemctl start node_exporter
+	systemctl start smartctl_exporter
 
 stop:
-	sudo systemctl stop zfs_exporter
-	sudo systemctl stop node_exporter
-	sudo systemctl stop smartctl_exporter
+	systemctl daemon-reload
+	systemctl stop zfs_exporter
+	systemctl stop node_exporter
+	systemctl stop smartctl_exporter
 
 uninstall:
-	sudo rm -rf /bin/exporter/
-	sudo rm -f /etc/systemd/system/zfs_exporter.service
-	sudo rm -f /etc/systemd/system/node_exporter.service
-	sudo rm -f /etc/systemd/system/smartctl_exporter.service
-	sudo systemctl daemon-reload
+	rm -rf /bin/exporter/
+	rm -f /etc/systemd/system/zfs_exporter.service
+	rm -f /etc/systemd/system/node_exporter.service
+	rm -f /etc/systemd/system/smartctl_exporter.service
+	systemctl daemon-reload
 
 clean-tmp:
 	rm -rf ./tmp
